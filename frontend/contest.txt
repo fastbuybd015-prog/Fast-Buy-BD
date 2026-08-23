@@ -1,0 +1,914 @@
+# E-Commerce Website — Full Frontend Implementation Task
+
+You are acting as a **senior product engineer, UI/UX designer, frontend architect, and interaction designer** responsible for building a polished university-level e-commerce project.
+
+Your job is to **fully implement the project inside the existing codebase**, not just provide suggestions or partial code.
+
+Do not wait for me to specify every small detail. Use the requirements below as the product brief, make sensible professional decisions yourself, and complete the implementation end-to-end.
+
+The goal is a **clean, modern, premium-looking e-commerce website inspired by the usability and visual quality of established Bangladeshi e-commerce platforms such as Shwapno**, while creating an original design rather than copying any existing website.
+
+---
+
+## 1. PROJECT GOAL
+
+Build a frontend-first e-commerce website where users can:
+
+- Browse products
+- Browse products by menu/category
+- See discounted products
+- See which shop/store a product belongs to
+- Open a product details page
+- Select quantity
+- Add products to cart
+- Review cart
+- Place a demo order
+- Register / Login through a demo UI
+- See a 1-day trial subscription concept
+- After the trial expires, see an option to subscribe for **৳50/month**
+
+This is primarily a **frontend project/demo**.
+
+Do NOT over-engineer the backend.
+
+The website should feel like a real product, but most data and functionality can use local mock data and frontend state.
+
+---
+
+# 2. TECHNOLOGY STACK
+
+Use the following stack unless the existing project already has a compatible setup:
+
+- Next.js
+- React
+- TypeScript
+- Tailwind CSS
+
+Use modern Next.js conventions and reusable React components.
+
+Prefer:
+
+- App Router
+- TypeScript interfaces/types
+- Reusable components
+- Clean folder structure
+- Local mock data
+- React state for demo interactions
+- Client components only where interaction requires them
+
+Do not introduce unnecessary technologies or dependencies.
+
+Avoid adding a database, authentication provider, payment gateway, CMS, or complex backend unless absolutely necessary.
+
+---
+
+# 3. CORE PRODUCT STRUCTURE
+
+The website should contain these major areas:
+
+### Main pages
+
+1. Home
+2. Product Listing / Category Page
+3. Product Details
+4. Cart
+5. Checkout / Order Confirmation
+6. Login
+7. Registration
+8. Subscription / Trial page
+9. Optional simple Profile / Account page if useful for completing the UX
+
+Do not create unnecessary pages simply to make the project larger.
+
+---
+
+# 4. HOME PAGE
+
+The homepage is the most important page.
+
+It should immediately feel like a modern commercial e-commerce website.
+
+Use a layout inspired by grocery / retail e-commerce platforms.
+
+Include:
+
+### Header
+
+- Brand logo / brand name
+- Search bar
+- Menu/category access
+- Cart icon
+- Login / Account button
+- Mobile menu
+- Clean responsive navigation
+
+The header should remain visually strong and usable on both desktop and mobile.
+
+### Hero Section
+
+Create a premium promotional hero section.
+
+Possible content:
+
+- Discount campaigns
+- Special offers
+- Grocery deals
+- Daily deals
+- Featured stores
+
+Use a polished banner/card layout.
+
+Do not make it excessively flashy.
+
+### Category / Menu Section
+
+Create a horizontally scrollable or grid-based menu of categories such as:
+
+- Grocery
+- Fruits & Vegetables
+- Meat & Fish
+- Dairy
+- Snacks
+- Beverages
+- Bakery
+- Household
+- Personal Care
+- Frozen Food
+
+Each category should be visually attractive and clickable.
+
+### Featured / Discount Products
+
+This is one of the most important sections.
+
+Show products with:
+
+- Product image
+- Product name
+- Original price
+- Discounted price
+- Discount percentage
+- Store name
+- Rating
+- Add to Cart button
+
+Clearly distinguish discounted price from original price.
+
+Example:
+
+~~৳250~~ → **৳199**
+
+### Shop / Store Section
+
+Products belong to different shops/stores.
+
+Create several demo stores such as:
+
+- Fresh Mart
+- Daily Basket
+- Green Valley
+- City Grocery
+- Family Foods
+
+Store cards can include:
+
+- Store name
+- Logo/avatar
+- Product count or small information
+- View Store button
+
+Clicking a store should allow users to browse products from that store.
+
+### Popular Products
+
+Show another product grid containing popular products.
+
+### Promotional Section
+
+Include a simple promotional section such as:
+
+**"Get 1 Day Free Trial"**
+
+Then:
+
+**"Continue for only ৳50/month"**
+
+This should visually connect to the subscription concept.
+
+### Footer
+
+Include:
+
+- About
+- Categories
+- Customer Support
+- Terms
+- Privacy
+- Contact
+- Social icons
+- Copyright
+
+Keep it clean.
+
+---
+
+# 5. PRODUCT LISTING PAGE
+
+When users select a category from the menu, open a category/product listing page.
+
+Include:
+
+- Category title
+- Product count
+- Search/filter area
+- Sort dropdown
+
+Possible filters:
+
+- Price
+- Discount
+- Store
+- Rating
+
+Keep filtering frontend-only.
+
+Create a responsive product grid.
+
+Desktop:
+
+4 products per row when appropriate.
+
+Tablet:
+
+2–3 products.
+
+Mobile:
+
+2 products per row where visually appropriate.
+
+Product cards must be reusable components.
+
+---
+
+# 6. PRODUCT CARD
+
+Design a premium reusable ProductCard component.
+
+Each card should contain:
+
+- Image
+- Discount badge
+- Product name
+- Store name
+- Rating
+- Original price
+- Current price
+- Add button
+
+Interactions:
+
+- Clicking product → Product Details
+- Add to Cart → updates cart state
+- Quantity controls where appropriate
+- Visual feedback after adding
+
+Avoid excessive animation.
+
+Use subtle hover effects.
+
+---
+
+# 7. PRODUCT DETAILS PAGE
+
+When a user selects a product, show a professional product detail page.
+
+Include:
+
+### Left side
+
+- Large product image
+- Thumbnail images if useful
+
+### Right side
+
+- Product name
+- Store name
+- Rating
+- Original price
+- Discounted price
+- Discount percentage
+- Short description
+- Availability
+- Quantity selector
+- Add to Cart
+- Buy Now
+
+Below:
+
+- Product description
+- Product information
+- Store information
+- Related products
+
+The quantity selector must actually affect the cart quantity.
+
+---
+
+# 8. SHOP / STORE INFORMATION
+
+Every product should clearly show which store it belongs to.
+
+Example:
+
+**Fresh Mart**
+
+Product cards and product details should make the store relationship obvious.
+
+Users should be able to click the store name and browse products from that store.
+
+Create a simple store page if necessary.
+
+It does not need complex store management.
+
+---
+
+# 9. CART
+
+Create a fully functional frontend cart.
+
+The cart should display:
+
+- Product image
+- Product name
+- Store
+- Price
+- Quantity
+- Total
+- Remove button
+
+Users must be able to:
+
+- Increase quantity
+- Decrease quantity
+- Remove item
+
+Order summary should calculate:
+
+- Subtotal
+- Discount
+- Delivery fee
+- Total
+
+Use realistic demo calculations.
+
+Persist cart state during the current session using an appropriate lightweight frontend approach such as React Context or localStorage.
+
+Do NOT introduce unnecessary state-management libraries unless truly needed.
+
+---
+
+# 10. CHECKOUT / ORDER FLOW
+
+Create a simple demo checkout flow.
+
+The user should be able to:
+
+1. Review cart
+2. Enter basic delivery information
+3. Select a demo payment method
+4. Place order
+
+Payment does NOT need to be real.
+
+Use options such as:
+
+- Cash on Delivery
+- Demo Card Payment
+- Mobile Payment (Demo)
+
+When the order is placed:
+
+Show a polished confirmation screen:
+
+**Order Placed Successfully**
+
+Include:
+
+- Demo order ID
+- Total amount
+- Delivery information
+- Order summary
+- Continue Shopping button
+
+No real payment processing is required.
+
+---
+
+# 11. LOGIN PAGE
+
+Create a polished login UI.
+
+Fields:
+
+- Email
+- Password
+
+Buttons:
+
+- Login
+- Continue with Google (UI/demo only)
+
+Also include:
+
+- Forgot Password
+- Create Account
+
+The authentication does NOT need to be connected to a real backend.
+
+Use demo frontend behavior.
+
+For example, after login, the user can be treated as a demo authenticated user.
+
+---
+
+# 12. REGISTRATION PAGE
+
+Create a professional registration page.
+
+Fields:
+
+- Full Name
+- Email
+- Password
+- Confirm Password
+
+After registration, show that the user has started a:
+
+## 1-Day Free Trial
+
+Show:
+
+**Free Trial — Active**
+
+and a visible countdown/status concept.
+
+Then explain:
+
+### After your trial ends
+
+**৳50 / month**
+
+for continued access.
+
+Provide:
+
+**Subscribe for ৳50/month**
+
+This is only a frontend/demo subscription experience.
+
+No real payment processing is required.
+
+---
+
+# 13. SUBSCRIPTION EXPERIENCE
+
+Create a simple subscription screen/modal/card.
+
+Example:
+
+### Your Trial
+
+**1 Day Free**
+
+Then:
+
+**৳50/month**
+
+Include:
+
+- Trial status
+- Subscription price
+- Benefits
+- Subscribe button
+
+The subscribe button can show a demo success state.
+
+For example:
+
+**Subscription Activated**
+
+No real payment integration is necessary.
+
+---
+
+# 14. DEMO DATA
+
+Create realistic local mock data.
+
+Use at least:
+
+- 25–40 products
+- 5–7 stores
+- 8–10 categories
+
+Each product should include fields such as:
+
+```
+id
+name
+slug
+category
+store
+storeId
+image
+price
+originalPrice
+discount
+rating
+description
+available
+
+```
+
+Use realistic grocery/product names.
+
+Make the product dataset diverse enough that category pages, search, filtering, cart, and related products feel realistic.
+
+Use remote image URLs only when reliable.
+
+Prefer stable image sources and graceful fallback handling.
+
+---
+
+# 15. SEARCH
+
+Implement a frontend search experience.
+
+The header search should allow users to search products by:
+
+- Product name
+- Category
+- Store
+
+Show matching products.
+
+Include an empty state:
+
+**No products found**
+
+with a useful message and button to return to shopping.
+
+---
+
+# 16. RESPONSIVENESS
+
+The website MUST be fully responsive.
+
+Test the UI conceptually for:
+
+- Desktop
+- Laptop
+- Tablet
+- Mobile
+
+Do not simply shrink desktop layouts.
+
+On mobile:
+
+- Use a mobile-friendly header
+- Search should remain accessible
+- Navigation should collapse appropriately
+- Product grids should adapt
+- Cart should remain easy to access
+- Buttons should remain touch-friendly
+- No horizontal overflow
+
+---
+
+# 17. DESIGN DIRECTION
+
+The design should feel:
+
+- Modern
+- Premium
+- Clean
+- Friendly
+- Commercial
+- Trustworthy
+- Minimal
+- Fast
+
+Think of a high-quality modern grocery e-commerce platform.
+
+Do NOT make it:
+
+- overly futuristic
+- overly glassmorphic
+- excessively animated
+- visually noisy
+- filled with gradients everywhere
+- overloaded with shadows
+- AI-looking
+
+The interface should look like something a professional product team would actually ship.
+
+Use a consistent design system:
+
+- Primary color
+- Secondary/accent color
+- Neutral background
+- Text hierarchy
+- Border system
+- Radius system
+- Spacing scale
+- Button styles
+- Card styles
+
+Keep visual consistency across every page.
+
+---
+
+# 18. UX DETAILS
+
+Pay attention to the small details that make the website feel professional.
+
+Include:
+
+- Loading states where appropriate
+- Empty states
+- Hover states
+- Focus states
+- Disabled states
+- Toast or inline feedback after cart actions
+- Proper button states
+- Image fallback handling
+- Responsive spacing
+- Accessible labels
+- Keyboard-friendly interactions
+- Semantic HTML
+
+Do not overdo animations.
+
+Use subtle transitions such as:
+
+- hover
+- scale
+- opacity
+- slide
+- fade
+
+Keep animations fast and purposeful.
+
+---
+
+# 19. COMPONENT ARCHITECTURE
+
+Create reusable components instead of duplicating UI.
+
+Potential structure:
+
+```
+components/
+  layout/
+  header/
+  footer/
+  product/
+  category/
+  store/
+  cart/
+  checkout/
+  auth/
+  subscription/
+  ui/
+
+```
+
+Use your own judgement to adapt this to the existing project.
+
+Create reusable components such as:
+
+- Header
+- Footer
+- ProductCard
+- ProductGrid
+- CategoryCard
+- StoreCard
+- QuantitySelector
+- PriceDisplay
+- CartItem
+- OrderSummary
+- SearchBar
+- Button
+- Modal
+- Badge
+- Rating
+
+Do not create unnecessary component abstraction.
+
+The architecture should remain understandable for a university project.
+
+---
+
+# 20. TYPESCRIPT
+
+Use proper TypeScript types.
+
+Create types/interfaces for:
+
+- Product
+- Store
+- Category
+- CartItem
+- User
+- Order
+- Subscription
+
+Avoid:
+
+```
+any
+
+```
+
+unless absolutely unavoidable.
+
+Keep the code clean and readable.
+
+---
+
+# 21. FRONTEND STATE
+
+Implement the minimum state required for realistic demo behavior.
+
+At minimum:
+
+- Cart state
+- Cart quantities
+- Demo user state
+- Registration/login state
+- Trial/subscription state
+- Search state
+- Basic product filtering
+
+Persist useful demo state in localStorage when appropriate.
+
+The application should still work without a backend.
+
+---
+
+# 22. BACKEND
+
+Do NOT build a complex backend.
+
+The priority is the frontend.
+
+If the project already has a backend structure, keep it lightweight.
+
+For demo purposes, frontend mock data is completely acceptable.
+
+Do not spend time building:
+
+- complex authentication systems
+- real payment systems
+- production database architecture
+- admin dashboard
+- order management backend
+- email verification
+- real subscription billing
+
+These are outside the scope of this project.
+
+---
+
+# 23. CODE QUALITY
+
+Act as a senior engineer.
+
+Before modifying the project:
+
+1. Inspect the existing codebase.
+2. Understand the current architecture.
+3. Identify what can be reused.
+4. Avoid unnecessary rewrites.
+5. Preserve useful existing functionality.
+6. Then implement the required experience.
+
+After implementation:
+
+- Run the project
+- Check for TypeScript errors
+- Check for build errors
+- Check routes
+- Check responsive behavior
+- Check broken imports
+- Check image failures
+- Check cart flow
+- Check registration/login flow
+- Check checkout flow
+
+Fix problems you discover.
+
+Do not stop after creating the first version.
+
+---
+
+# 24. IMPORTANT IMPLEMENTATION PRINCIPLE
+
+Do not ask me questions for small design decisions.
+
+You are expected to make professional assumptions.
+
+Examples:
+
+If I did not specify exact colors → choose a suitable professional palette.
+
+If I did not specify exact typography → choose a clean modern font stack.
+
+If I did not specify exact product names → create realistic demo products.
+
+If I did not specify exact layout → use best-practice e-commerce UX.
+
+If I did not specify exact animation → keep it subtle and professional.
+
+Only ask a question if something is genuinely impossible to determine from the project.
+
+Otherwise, make the decision yourself and continue.
+
+---
+
+# 25. FINAL QUALITY BAR
+
+The finished project should NOT feel like:
+
+"Student made a few pages with Tailwind."
+
+It should feel like:
+
+**"A professional startup MVP / university project that could realistically be presented to a client."**
+
+Prioritize:
+
+1. Visual quality
+2. UX
+3. Responsiveness
+4. Reusable architecture
+5. Functional frontend interactions
+6. Clean TypeScript
+7. Simple maintainable implementation
+
+Do not add complexity just for the sake of complexity.
+
+---
+
+# 26. FINAL EXECUTION INSTRUCTION
+
+You have full responsibility for completing this implementation.
+
+Start by inspecting the existing repository.
+
+Then:
+
+- Plan the architecture internally
+- Build the design system
+- Implement the pages
+- Implement reusable components
+- Add mock data
+- Implement cart interactions
+- Implement search/filtering
+- Implement demo authentication
+- Implement trial/subscription UI
+- Implement checkout
+- Ensure responsive behavior
+- Run the application
+- Fix errors
+- Perform a final UI/UX polish pass
+
+Continue until the project is in a **complete, presentable state**.
+
+Do not return a long explanation before doing the work.
+
+Your primary task is to **actually build the project in the repository**.
+
+At the end, provide a concise summary of:
+
+- What was implemented
+- Important routes/pages
+- Main technologies used
+- Any limitations or demo-only functionality
+- How to run the project
+
+
+
+
+
+### IMPORTANT — IMAGE / ASSET RULE
+
+Do **not create custom SVG illustrations, SVG product images, or manually drawn vector assets** for this project.
+
+For product images, category images, store images, banners, and other visual content, use **high-quality demo images from reliable online sources** such as Unsplash, Pexels, Pixabay, or other suitable public image URLs.
+
+Use remote/demo images wherever appropriate so the website feels realistic and visually rich.
+
+Only use CSS, icons, or simple UI shapes for interface elements. For icons, you may use an existing icon library if needed.
+
+Do not waste time generating custom artwork or SVG illustrations unless absolutely necessary for a functional UI element.
