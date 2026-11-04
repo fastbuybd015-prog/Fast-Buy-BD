@@ -1,0 +1,17 @@
+FROM oven/bun:1
+
+WORKDIR /app
+
+COPY package.json bun.lock ./
+RUN bun install --frozen-lockfile --production
+
+COPY . .
+
+ENV NODE_ENV=production
+ENV HOST=0.0.0.0
+ENV PORT=80
+ENV ENABLE_SWAGGER=true
+
+EXPOSE 80
+
+CMD ["bun", "src/server.ts"]
