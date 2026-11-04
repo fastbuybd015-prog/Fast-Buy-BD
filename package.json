@@ -1,0 +1,13 @@
+{
+  "name": "fast-buy-bd",
+  "private": true,
+  "scripts": {
+    "build": "npm run vercel-build",
+    "vercel-build": "cd frontend && npm install && npm run build"
+  },
+  "dependencies": {
+    "next": "^16.3.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  }
+}
