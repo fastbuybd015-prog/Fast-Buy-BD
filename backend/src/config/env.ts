@@ -37,6 +37,9 @@ const envSchema = z.object({
   // --- CORS ----------------------------------------------------------------
   FRONTEND_URL: z.preprocess(blankToUndefined, z.url().default("http://localhost:3000")),
   ADDITIONAL_CORS_ORIGINS: optionalString,
+  // Vercel injects these hostnames for preview and production deployments.
+  VERCEL_URL: optionalString,
+  VERCEL_PROJECT_PRODUCTION_URL: optionalString,
 
   // --- Database ------------------------------------------------------------
   DATABASE_URL: optionalString,
@@ -71,7 +74,6 @@ const envSchema = z.object({
   ENABLE_SWAGGER: z.preprocess(blankToUndefined, z.enum(["true", "false"]).optional()),
 });
 
-/** Variables that must be present before the app is allowed to run for real. */
 const PRODUCTION_REQUIRED = [
   "DATABASE_URL",
   "SUPABASE_URL",
@@ -120,6 +122,10 @@ const additionalOrigins = (raw.ADDITIONAL_CORS_ORIGINS ?? "")
   .map((origin) => origin.trim())
   .filter((origin) => origin.length > 0);
 
+const vercelOrigins = [raw.VERCEL_URL, raw.VERCEL_PROJECT_PRODUCTION_URL]
+  .filter((hostname): hostname is string => Boolean(hostname))
+  .map((hostname) => (hostname.startsWith("http") ? hostname : `https://${hostname}`));
+
 export const env = {
   nodeEnv: raw.NODE_ENV,
   isProduction,
@@ -131,7 +137,7 @@ export const env = {
   logLevel: raw.LOG_LEVEL,
 
   /** Every browser origin allowed to call this API. */
-  corsOrigins: [raw.FRONTEND_URL, ...additionalOrigins],
+  corsOrigins: [raw.FRONTEND_URL, ...additionalOrigins, ...vercelOrigins],
   frontendUrl: raw.FRONTEND_URL,
 
   databaseUrl: raw.DATABASE_URL,
@@ -153,7 +159,6 @@ export const env = {
 
   enableSwagger: raw.ENABLE_SWAGGER ? raw.ENABLE_SWAGGER === "true" : !isProduction,
 
-  /** Capability flags — used to report honest health/feature status. */
   isDatabaseConfigured: raw.DATABASE_URL !== undefined,
   isSupabaseConfigured:
     raw.SUPABASE_URL !== undefined &&
@@ -162,7 +167,6 @@ export const env = {
   isRedisConfigured: raw.REDIS_URL !== undefined,
   isGeminiConfigured: raw.GEMINI_API_KEY !== undefined,
 
-  /** Non-fatal gaps, surfaced as a startup warning in development. */
   missingOptionalConfig: missingForProduction,
 } as const;
 
