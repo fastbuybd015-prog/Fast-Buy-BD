@@ -5,13 +5,20 @@
  */
 
 function getApiBaseUrl(): string {
-  const envUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000/api/v1';
+  // Browser requests use the shared public domain and Vercel's /api rewrite.
+  if (typeof window !== 'undefined') {
+    return '/api/v1';
+  }
+
+  // Server-side requests use the private Vercel service binding at runtime.
+  // NEXT_PUBLIC_API_URL remains as a compatibility fallback for other hosts.
+  const envUrl =
+    process.env.BACKEND_URL ||
+    process.env.NEXT_PUBLIC_API_URL ||
+    'http://localhost:4000';
   const trimmed = envUrl.replace(/\/+$/, '');
   return trimmed.endsWith('/api/v1') ? trimmed : `${trimmed}/api/v1`;
 }
-
-const API_BASE = getApiBaseUrl();
-
 
 export interface ApiResponse<T> {
   success: boolean;
@@ -47,7 +54,8 @@ export async function apiClient<T>(
   endpoint: string,
   options: RequestInit = {},
 ): Promise<T> {
-  const url = endpoint.startsWith('http') ? endpoint : `${API_BASE}${endpoint}`;
+  const apiBase = getApiBaseUrl();
+  const url = endpoint.startsWith('http') ? endpoint : `${apiBase}${endpoint}`;
 
   // Get token from storage or context if available
   let token: string | null = null;
