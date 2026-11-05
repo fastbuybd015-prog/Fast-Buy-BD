@@ -40,6 +40,17 @@ npm run typecheck  # tsc --noEmit
 
 Node 20.9+ is required (Next.js 16).
 
+## Deploying to Vercel
+
+This folder is configured as a Next.js Vercel project. If importing the repository from GitHub,
+set the Vercel **Root Directory** to `frontend`. Keep the Next.js framework preset and default
+build/install settings; Vercel uses `npm run build` and the lockfile in this directory. The current
+frontend demo does not need environment variables. Once connected, pushes to `main` trigger a
+production deployment and pull requests get preview deployments.
+
+Run `npm run build` locally before deploying to check the production build. See the repository
+[root README](../README.md) for backend/deployment architecture notes.
+
 ## Design system
 
 The palette lives in `tailwind.config.ts` and is used through three token scales, so a rebrand
