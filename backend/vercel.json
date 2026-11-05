@@ -1,6 +1,5 @@
 {
-  "bunVersion": "1.x",
-  "buildCommand": "mkdir -p public && echo ok > public/index.txt",
+  "buildCommand": "mkdir -p public && echo ok > public/index.txt && npx esbuild src/app.ts --bundle --platform=node --format=esm --packages=external --outfile=dist/app.mjs",
   "outputDirectory": "public",
   "rewrites": [{ "source": "/(.*)", "destination": "/api" }]
 }
