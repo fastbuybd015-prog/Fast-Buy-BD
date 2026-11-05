@@ -28,11 +28,12 @@
     "@google/genai": "^2.17.1",
     "@supabase/supabase-js": "^2.112.3",
     "drizzle-orm": "^0.45.2",
-    "fastify": "^5.2.1",
+    "fastify": "^5.12.1",
     "fastify-plugin": "^6.0.0",
     "fastify-type-provider-zod": "^7.0.0",
     "ioredis": "^5.4.2",
     "postgres": "^3.4.5",
+    "semver": "^7.8.5",
     "zod": "^4.4.3"
   },
   "devDependencies": {
