@@ -5,16 +5,15 @@ import {
   validatorCompiler,
   type ZodTypeProvider,
 } from "fastify-type-provider-zod";
-import { API_PREFIX } from "@/config/constants";
-import { env } from "@/config/env";
-import { healthRoutes } from "@/modules/health/health.route";
-import authPlugin from "@/plugins/auth";
-import corsPlugin from "@/plugins/cors";
-import errorHandlerPlugin from "@/plugins/error-handler";
-import securityPlugin from "@/plugins/security";
-import swaggerPlugin from "@/plugins/swagger";
-import websocketPlugin from "@/plugins/websocket";
-import { apiRoutes } from "@/routes";
+import { API_PREFIX } from "./config/constants.js";
+import { env } from "./config/env.js";
+import { healthRoutes } from "./modules/health/health.route.js";
+import authPlugin from "./plugins/auth.js";
+import corsPlugin from "./plugins/cors.js";
+import errorHandlerPlugin from "./plugins/error-handler.js";
+import securityPlugin from "./plugins/security.js";
+import swaggerPlugin from "./plugins/swagger.js";
+import { apiRoutes } from "./routes.js";
 
 /**
  * Builds a fully configured Fastify instance without starting it.
@@ -75,7 +74,6 @@ export async function buildApp(): Promise<FastifyInstance> {
   await app.register(corsPlugin);
   await app.register(errorHandlerPlugin);
   await app.register(swaggerPlugin);
-  await app.register(websocketPlugin);
   await app.register(authPlugin);
 
   // Infrastructure endpoint, deliberately outside the versioned API.
